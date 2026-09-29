@@ -1,0 +1,60 @@
+<title>서재앱 흐름도</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Noto+Sans+KR:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#f3f4f1; --card:#fbfbf9; --ink:#1f2a33; --muted:#5d6872; --line:#d7dbd6;
+  --spine:#2f5d50; --spine-soft:#e1ebe6; --flag:#9a5b13; --flag-soft:#f6ecdd;
+  --serif:"Gowun Batang","Noto Serif KR",serif; --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#161b1f; --card:#1d2328; --ink:#e4e8e6; --muted:#9aa6ad; --line:#303a40;
+  --spine:#7fb8a5; --spine-soft:#1f3a33; --flag:#e0a861; --flag-soft:#3a2c1a; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#161b1f; --card:#1d2328; --ink:#e4e8e6; --muted:#9aa6ad; --line:#303a40;
+  --spine:#7fb8a5; --spine-soft:#1f3a33; --flag:#e0a861; --flag-soft:#3a2c1a; color-scheme:dark;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;padding-inline:16px;padding-block:28px 64px}
+.wrap{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.top h1{font-family:var(--serif);font-size:clamp(26px,4vw,34px);margin:0;text-wrap:balance}
+.top p{margin:6px 0 0;color:var(--muted);max-width:65ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);margin-top:12px}
+.legend span b{color:var(--ink);font-weight:600}
+nav{display:flex;flex-wrap:wrap;gap:8px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--paper);padding-block:8px;z-index:2;border-bottom:1px solid var(--line)}
+nav a{display:flex;gap:6px;align-items:center;text-decoration:none;color:var(--ink);font-size:14px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
+nav a b{font-family:var(--mono);color:var(--spine)}
+nav a.off{color:var(--muted);border-style:dashed;background:transparent}
+nav a:focus-visible{outline:2px solid var(--spine);outline-offset:2px}
+.group{display:flex;flex-direction:column;gap:18px;scroll-margin-top:64px}
+.group h2{font-family:var(--serif);font-size:24px;margin:0;display:flex;gap:12px;align-items:baseline}
+.group h2 span{font-family:var(--mono);font-size:15px;color:#fff;background:var(--spine);padding:2px 9px;border-radius:4px}
+:root[data-theme="dark"] .group h2 span{color:var(--paper)}
+.pending h2{color:var(--muted)} .pending h2 span{background:var(--line);color:var(--muted)}
+.wait{margin:0;color:var(--muted);font-size:14px}
+.flow{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;scroll-margin-top:64px}
+.flow header{display:flex;gap:10px;align-items:baseline}
+.flow .code{font-family:var(--mono);font-size:13px;color:var(--spine)}
+.flow h3{margin:0;font-size:17px;font-weight:600}
+.screens{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:3px;background:var(--spine-soft);color:var(--spine)}
+.diagram{overflow-x:auto;border-top:1px solid var(--line);padding-top:10px}
+.diagram{overflow-x:auto}
+.sheet{display:inline-block;background:#fbfbf9;border-radius:4px;padding:12px;color:#1f2a33}
+.sheet svg{display:block;max-width:none;height:auto}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.note{border-radius:6px;padding:12px 16px}
+.note h4{margin:0 0 6px;font-size:14px}
+.note ul{margin:0;padding-left:18px;font-size:14px}
+.note.todo{background:var(--flag-soft);color:var(--ink)} .note.todo h4{color:var(--flag)}
+.note.done{background:var(--spine-soft)} .note.done h4{color:var(--spine)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+html{scroll-behavior:smooth}
+</style>
+<div class="wrap">
+  <div class="top">
+    <h1>서재앱 흐름도</h1>
+    <p>MVP 흐름을 묶음별로 그린 순서도예요. 상자 안의 S 번호는 화면 문서(04)의 화면 번호예요. 원본은 03 기능과흐름 문서 9절이에요.</p>
+    <div class="legend"><span><b>둥근 상자</b> 시작</span><span><b>마름모</b> 갈림길</span><span><b>점선</b> 예외</span><span><b>주황 상자</b> 결정 필요</span></div>
+  </div>
+  <nav aria-label="묶음">{{NAV}}</nav>
+  {{BODY}}
+</div>
