@@ -1,0 +1,38 @@
+# 종류	URL	출처	제목(참고)
+기사	https://brunch.co.kr/@trendlite/279	북마크	07화 왜 모두들 수직적 통합에 목을 매는 건가요?
+기사	https://brunch.co.kr/@grit-han/24	북마크	서비스별 커뮤니티 분석 및 개선
+기사	https://brunch.co.kr/@candigka/55	북마크	토스의 채용공고 속 PO(서비스기획) 이력서 작성법
+기사	https://brunch.co.kr/@seungpillee/78	북마크	현업에서 주목할만한 LLM 서비스
+기사	https://brunch.co.kr/@kkmd/212	북마크	AI Agent 시대, 어떤 PM이 되어야 할까?
+기사	https://brunch.co.kr/@windydog/165	북마크	혼자 서비스 기획을 공부하는 방법
+기사	https://www.openads.co.kr/content/contentDetail?contsId=9854	북마크	소비자를 가둬두는 완벽한 전략!
+기사	https://yozm.wishket.com/magazine/detail/2329/	북마크	애플이 만든 일기(Journal) 앱 미리보기 | 요즘IT
+기사	https://yozm.wishket.com/magazine/detail/1132/	북마크	야놀자vs여기어때, 국내 숙박 앱 강자는? | 요즘IT
+기사	https://it-ist.tistory.com/277	북마크	서비스 기획 산출물 톺아보기📚
+기사	https://bcho.tistory.com/1394	북마크	LLM 모델과 프롬프트 작성 방법
+기사	https://aplab.tistory.com/entry/Funnel-adhoc	북마크	데이터 분석 용어 정리 - Funnel, adhoc 분석
+기사	https://blog.naver.com/agapeuni/222975289239	북마크	[정보] 금융권에서 사용하는 기간계, 계정계,.. : 네이버블로그
+기사	https://blog.naver.com/8353cc/223862253505	북마크	LLM 기법: 🧮 “단어 간 관계? 셀프어텐.. : 네이버블로그
+기사	https://helloworld.kurly.com/blog/vertex-ai-search-NR/	북마크	Vertex AI Search를 활용한 결과 없는 검색 개선하기 - 컬리
+기사	https://helloworld.kurly.com/blog/2024-review-llm-application/	북마크	LLM Application 구축 도전기 (feat. 소중한 고객님들의 
+기사	https://www.samsungsds.com/kr/insights/prompt-engineering.html	북마크	생성형 AI 모델과 대화하는 프롬프트 엔지니어링(Prompt Engine
+기사	https://news.hada.io/topic?id=27869	북마크	매일 아침 도착하는 AI 인사이트 - 논문에서 커뮤니티까지 | GeekN
+기사	https://blog-ko.superb-ai.com/what-is-prompt-engineering/	북마크	코딩없이 초거대언어모델(LLM)을 활용하는 법: 프롬프트 엔지니어링(Pr
+기사	https://platform.openai.com/docs/guides/prompt-engineering	북마크	Prompt engineering - OpenAI API
+기사	https://medium.com/@hello.jihye.lee/%ED%94%84%EB%A1%9C%EB%8D%95%ED%8A%B8-%EC%98%A4%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98-product-operations-%ED%8C%80%EC%9D%80-%EB%AC%B4%EC%8A%A8-%EC%9D%BC%EC%9D%84-%ED%95%98%EB%8A%94%EA%B0%80-33dbfe44ae44	북마크	프로덕트 오퍼레이션(Product Operations)팀은 무슨 일을 하
+기사	https://medium.com/miridih/%EC%9A%B0%EB%A6%AC%EB%8A%94-%EC%99%9C-%EC%A7%80%EA%B8%88-%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A5%BC-%EC%B0%BE%EA%B3%A0-%EC%9E%88%EC%9D%84%EA%B9%8C%EC%9A%94-e4269e518ec4	북마크	“우리는 왜 지금, 프롬프트 엔지니어를 찾고 있을까요?”. 데이터 플랫폼
+arxiv	https://arxiv.org/html/2505.19030v3	북마크	RECAST: Strengthening LLMs’ Complex Inst
+arxiv	https://arxiv.org/html/2601.17789v1	북마크	Neuro-Symbolic Verification on Instructi
+arxiv	https://arxiv.org/pdf/2407.12994	북마크	A Survey of Prompt Engineering Methods i
+arxiv	https://arxiv.org/abs/2201.11903	공개논문(채움)	Chain-of-Thought Prompting (Wei 2022)
+arxiv	https://arxiv.org/abs/2306.05685	공개논문(채움)	Judging LLM-as-a-Judge with MT-Bench (Zheng 2023)
+pdf	https://aclanthology.org/2023.emnlp-main.153.pdf	공개논문(채움)	EMNLP 2023 논문 PDF (ACL Anthology)
+pdf	https://proceedings.neurips.cc/paper_files/paper/2022/file/9d5609613524ecf4f15af0f7b31abca4-Paper-Conference.pdf	공개논문(채움)	NeurIPS 2022 Chain-of-Thought PDF
+pdf	https://www.jmlr.org/papers/volume24/22-1144/22-1144.pdf	공개논문(채움)	JMLR 논문 PDF
+pdf	https://openreview.net/pdf?id=WE_vluYUL-X	공개논문(채움)	ICLR 2023 Self-Consistency PDF (OpenReview)
+pdf	https://dl.acm.org/doi/pdf/10.1145/3544548.3581388	공개논문(채움)	CHI 2023 PDF (ACM, 봇 차단 확인용)
+목록형	https://news.hada.io/	북마크	GeekNews - 개발/기술/스타트업 뉴스 서비스
+목록형	https://lo1ool.tistory.com/	북마크	lo1oo
+로그인후보	https://www.jobkorea.co.kr/Recruit/GI_Read/49862178?Oem_Code=C1&sc=11	북마크	㈜아이디에스앤트러스트 채용 - [대웅그룹/idsTrust] AI Agen
+로그인후보	https://www.saramin.co.kr/zf_user/	북마크	사람인
+로그인후보	https://www.wanted.co.kr/jobsfeed	북마크	원티드
