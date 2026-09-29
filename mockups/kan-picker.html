@@ -1,0 +1,220 @@
+<title>칸 고르기 동작 목업</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Gaegu:wght@400;700&display=swap">
+<style>
+:root{
+  --wall:#e9e6df; --wood:#8a6a4a; --wood-dark:#6f5238; --shelf-back:#d9d2c5; --paper:#fbf8f1; --card-line:#e4ddcc;
+  --ink:#2a2622; --muted:#6e675e; --accent:#2f5d50; --accent-soft:#dfe9e4; --toast:#2a2622; --toast-ink:#f6f2ea;
+  --paper-sp:#3f5f7a; --article-sp:#a8573b; --report-sp:#7a7a3f; --band:#e8c34a;
+  --serif:"Gowun Batang","Noto Serif KR",serif; --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif; --hand:"Gaegu","Nanum Pen Script",cursive;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --wall:#1d1b19; --wood:#5e4631; --wood-dark:#4a3726; --shelf-back:#2a2622; --paper:#2c2823; --card-line:#3a342d;
+  --ink:#ece6da; --muted:#a79e91; --accent:#8cc2ae; --accent-soft:#233a33; --toast:#ece6da; --toast-ink:#1d1b19; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --wall:#1d1b19; --wood:#5e4631; --wood-dark:#4a3726; --shelf-back:#2a2622; --paper:#2c2823; --card-line:#3a342d;
+  --ink:#ece6da; --muted:#a79e91; --accent:#8cc2ae; --accent-soft:#233a33; --toast:#ece6da; --toast-ink:#1d1b19; color-scheme:dark;}
+body{background:var(--wall);color:var(--ink);font-family:var(--sans);line-height:1.55;padding-inline:16px;padding-block:24px 80px}
+.wrap{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1{font-family:var(--serif);font-size:26px;margin:0}
+.lead{margin:4px 0 0;color:var(--muted);max-width:68ch;font-size:14px}
+.steps{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted);margin:8px 0 0;padding:0;list-style:none}
+.steps li b{color:var(--accent)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start}
+@media (max-width:820px){.layout{grid-template-columns:1fr}}
+.case{background:var(--wood);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:12px;box-shadow:inset 0 0 0 2px var(--wood-dark)}
+.row{background:var(--shelf-back);border-bottom:10px solid var(--wood-dark);border-radius:3px 3px 0 0;padding:10px 12px 0;display:flex;flex-direction:column;gap:6px}
+.label{align-self:flex-start;font-size:13px;background:var(--paper);padding:1px 10px;border-radius:2px;box-shadow:0 1px 0 rgba(0,0,0,.12)}
+.label.hand{font-family:var(--hand);font-size:18px;line-height:1.2}
+.label.temp{border:1px dashed var(--muted);background:transparent}
+.books{display:flex;align-items:flex-end;gap:3px;min-height:128px;overflow-x:auto;padding-top:8px}
+.spine{position:relative;height:118px;border:0;border-radius:2px 2px 0 0;color:#fff;cursor:pointer;writing-mode:vertical-rl;font-family:var(--serif);font-size:12px;padding:8px 0;display:flex;align-items:center;justify-content:flex-start;transition:transform .25s ease,filter .2s;flex:none}
+.spine:hover,.spine:focus-visible{transform:translateY(-8px);outline:none}
+.spine:focus-visible{box-shadow:0 0 0 2px var(--accent)}
+.spine.pulled{transform:translateY(-22px)}
+.spine.t-paper{background:var(--paper-sp)} .spine.t-article{background:var(--article-sp)} .spine.t-report{background:var(--report-sp)}
+.spine.w1{width:28px}.spine.w2{width:36px}.spine.w3{width:46px}
+.spine.fade{filter:saturate(.45) brightness(1.08)}
+.spine .band{position:absolute;left:0;right:0;top:44%;height:7px;background:var(--band)}
+.spine.new{animation:glow 1.6s ease 2}
+@keyframes glow{50%{box-shadow:0 0 0 3px var(--band)}}
+.ghost{height:118px;width:30px;border:1px dashed var(--muted);border-radius:2px;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font-size:10px;color:var(--muted);flex:none}
+.side{display:flex;flex-direction:column;gap:12px}
+.librarian{background:var(--paper);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.lib-head{display:flex;gap:10px;align-items:center}
+.cat{width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;flex:none}
+.lib-head p{margin:0;font-size:14px}
+.report{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.report li{display:flex;flex-direction:column;gap:4px;padding:8px 10px;border:1px solid var(--card-line);border-radius:4px;font-size:13px}
+.report .t{font-family:var(--serif)}
+.note{font-size:12px;color:var(--muted);margin:0}
+.chip{display:inline-flex;align-items:center;gap:4px;font:500 12px var(--sans);color:var(--accent);background:var(--accent-soft);border:0;border-radius:3px;padding:3px 8px;cursor:pointer;align-self:flex-start}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.overlay{position:fixed;inset:0;background:rgba(20,16,12,.35);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
+.card{position:relative;width:min(460px,100%);background:var(--paper);border-radius:4px;padding:20px 22px 16px;box-shadow:0 18px 40px rgba(0,0,0,.25);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 27px,var(--card-line) 27px 28px);background-position:0 70px;animation:rise .25s ease}
+@keyframes rise{from{transform:translateY(24px);opacity:.3}to{transform:none;opacity:1}}
+.card::before{content:"";position:absolute;left:36px;top:0;bottom:0;width:1px;background:#d9a3a3;opacity:.6}
+.card .hole{position:absolute;left:50%;bottom:8px;width:14px;height:14px;border-radius:50%;background:var(--wall);transform:translateX(-50%)}
+.card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding-left:24px}
+.meta{font-size:12px;color:var(--muted);margin:0}
+.card h2{font-family:var(--serif);font-size:19px;margin:4px 0 10px;text-wrap:balance}
+.abs{padding-left:24px;font-size:14px;line-height:28px;margin:0 0 14px}
+.abs li{margin:0}
+.actions{display:flex;gap:8px;justify-content:space-between;align-items:center;padding-left:24px;margin-bottom:10px;flex-wrap:wrap}
+.btn{font:500 13px var(--sans);border-radius:4px;padding:7px 14px;cursor:pointer;border:1px solid var(--card-line);background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.close{position:absolute;right:10px;top:8px;border:0;background:none;color:var(--muted);font-size:18px;cursor:pointer}
+.picker{position:absolute;z-index:20;background:var(--paper);border:1px solid var(--card-line);border-radius:6px;box-shadow:0 10px 24px rgba(0,0,0,.2);padding:6px;min-width:200px;display:flex;flex-direction:column;gap:2px}
+.picker button{all:unset;cursor:pointer;padding:7px 10px;border-radius:4px;font-size:13px;display:flex;justify-content:space-between;gap:12px}
+.picker button:hover,.picker button:focus-visible{background:var(--accent-soft)}
+.picker .cur{color:var(--muted)}
+.picker hr{border:0;border-top:1px solid var(--card-line);margin:4px 2px}
+.picker .newk{color:var(--accent);font-weight:600}
+.picker form{display:flex;gap:6px;padding:4px}
+.picker input{flex:1;min-width:0;font:13px var(--sans);padding:5px 8px;border:1px solid var(--card-line);border-radius:4px;background:var(--paper);color:var(--ink)}
+.picker .hint{font-size:11px;color:var(--muted);padding:0 6px 4px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--toast);color:var(--toast-ink);border-radius:6px;padding:10px 14px;font-size:14px;display:flex;gap:14px;align-items:center;z-index:30}
+.toast button{all:unset;cursor:pointer;font-weight:600;text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--accent)">동작 확인용 · 디자인 시안 아님</p>
+    <h1>칸 고르기 동작 목업</h1>
+    <p class="lead">책장에서 책을 누르면 초록 카드가 뜨고, 카드 위의 칸 이름을 눌러 바로 옮길 수 있어요. 오른쪽 사서 보고에서도 같은 방식으로 옮겨져요. 예시 데이터예요. 색, 글꼴, 책 모양, 사서 그림은 모두 자리를 채운 임시 모양이고, 실제 디자인은 디자인 단계에서 따로 잡아요.</p>
+    <ol class="steps">
+      <li><b>1</b> 책등 누르기</li><li><b>2</b> 카드의 칸 이름 누르기</li><li><b>3</b> 칸 고르기 (또는 + 새 칸)</li><li><b>4</b> 닫으면 새 칸에 꽂히고, 원래 자리엔 이동 흔적</li>
+    </ol>
+  </header>
+  <div class="layout">
+    <section class="case" id="case" aria-label="책장"></section>
+    <aside class="side">
+      <div class="librarian">
+        <div class="lib-head">
+          <div class="cat" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 30 30"><path d="M6 11 L8 3 L12 9 L18 9 L22 3 L24 11 Q26 20 15 25 Q4 20 6 11Z" fill="var(--accent)"/><circle cx="11" cy="14" r="1.6" fill="var(--paper)"/><circle cx="19" cy="14" r="1.6" fill="var(--paper)"/><path d="M13 18 Q15 20 17 18" stroke="var(--paper)" stroke-width="1.2" fill="none"/></svg>
+          </div>
+          <p>어제 담은 세 권 정리해뒀어요.</p>
+        </div>
+        <ul class="report" id="report"></ul>
+        <p class="note">칸이 틀렸으면 칸 이름을 눌러 바로 옮기세요. 옮긴 기록이 쌓이면 사서가 규칙을 물어봐요.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+const kans=[
+  {id:'eval',name:'LLM 평가',hand:false},
+  {id:'agent',name:'에이전트',hand:false},
+  {id:'ux',name:'UX',hand:true},
+  {id:'temp',name:'임시서가',temp:true}
+];
+let books=[
+  {id:1,t:'Who Validates the Validators',type:'paper',w:3,kan:'eval',src:'arXiv · 2024',abs:['LLM 평가 기준을 사람 판단에 맞추는 과정을 다룸','평가하다 보면 기준 자체가 바뀌는 criteria drift를 관찰','EvalGen으로 기준과 채점을 함께 다듬음']},
+  {id:2,t:'자동 평가의 함정',type:'article',w:1,kan:'eval',fade:true,src:'기술 블로그 · 2025',abs:['judge 모델이 좋아하는 답으로 쏠리는 문제','평가 세트에만 맞춰지는 과적합','사람 점검을 주기적으로 넣어야 한다는 결론']},
+  {id:3,t:'에이전트 벤치마크 정리',type:'report',w:2,kan:'eval',isNew:true,src:'리포트 · 2026',abs:['에이전트 평가용 벤치마크 12개 비교','과정(trajectory) 평가와 결과 평가의 차이','비용 대비 신뢰도 표']},
+  {id:4,t:'툴 호출 실패 유형',type:'paper',w:2,kan:'agent',src:'arXiv · 2025',abs:['도구 호출이 깨지는 다섯 가지 유형','재시도 정책별 성공률','구조 문제와 프롬프트 문제 구분']},
+  {id:5,t:'디자인 시스템 운영기',type:'article',w:1,kan:'ux',src:'브런치 · 2025',abs:['컴포넌트 이름 규칙부터 정한 이유','토큰 단위로 테마를 나눈 과정','운영 인원 둘로 유지한 방법']},
+  {id:6,t:'검색 결과 순서 실험',type:'article',w:1,kan:'temp',src:'뉴스레터 · 2026',abs:['관련도순과 최신순을 섞은 실험','클릭보다 저장이 좋은 신호였다는 결과','작은 서비스에서의 적용법']}
+];
+let ghosts=[]; // {kan, title}
+let openId=null, picker=null, toastTimer=null, lastMove=null;
+const kanName=id=>kans.find(k=>k.id===id).name;
+
+function renderCase(){
+  const el=document.getElementById('case'); el.innerHTML='';
+  kans.forEach(k=>{
+    const row=document.createElement('div'); row.className='row';
+    const lab=document.createElement('span'); lab.className='label'+(k.hand?' hand':'')+(k.temp?' temp':''); lab.textContent=k.name; row.appendChild(lab);
+    const shelf=document.createElement('div'); shelf.className='books';
+    books.filter(b=>b.kan===k.id).forEach(b=>{
+      const s=document.createElement('button');
+      s.className=`spine t-${b.type} w${b.w}`+(b.fade?' fade':'')+(b.justMoved?' new':'')+(openId===b.id?' pulled':'');
+      s.setAttribute('aria-label',b.t+' 열기'); s.innerHTML=(b.isNew?'<span class="band"></span>':'')+`<span>${b.t}</span>`;
+      s.onclick=()=>openCard(b.id); shelf.appendChild(s);
+    });
+    ghosts.filter(g=>g.kan===k.id).forEach(g=>{const d=document.createElement('div');d.className='ghost';d.textContent='옮겨졌어요';d.title=g.title+' → '+g.to;shelf.appendChild(d)});
+    row.appendChild(shelf); el.appendChild(row);
+  });
+}
+function renderReport(){
+  const ul=document.getElementById('report'); ul.innerHTML='';
+  books.filter(b=>[3,5,6].includes(b.id)).forEach(b=>{
+    const li=document.createElement('li');
+    li.innerHTML=`<span class="t">${b.t}</span>`;
+    const c=chip(b); li.appendChild(c); ul.appendChild(li);
+  });
+}
+function chip(b){
+  const c=document.createElement('button'); c.className='chip'; c.type='button';
+  c.innerHTML=`${kanName(b.kan)} <span aria-hidden="true">▾</span>`;
+  c.setAttribute('aria-haspopup','listbox'); c.onclick=e=>{e.stopPropagation();openPicker(c,b)}; return c;
+}
+function openCard(id){
+  openId=id; renderCase(); const b=books.find(x=>x.id===id);
+  closePicker(); document.querySelector('.overlay')?.remove();
+  const ov=document.createElement('div'); ov.className='overlay'; ov.onclick=e=>{if(e.target===ov)closeCard()};
+  const card=document.createElement('article'); card.className='card'; card.setAttribute('role','dialog'); card.setAttribute('aria-label','초록 카드');
+  card.innerHTML=`<button class="close" aria-label="닫기">×</button>
+    <div class="card-top"><div><p class="meta">${b.src} · ${b.type==='paper'?'논문':b.type==='article'?'기사':'리포트'}</p><h2>${b.t}</h2></div></div>
+    <ul class="abs">${b.abs.map(a=>`<li>${a}</li>`).join('')}</ul>
+    <div class="actions"><div class="chipslot"></div><div style="display:flex;gap:8px"><button class="btn">원문 열기</button><button class="btn primary">읽기</button></div></div>
+    <span class="hole" aria-hidden="true"></span>`;
+  card.querySelector('.chipslot').appendChild(chip(b));
+  card.querySelector('.close').onclick=closeCard;
+  ov.appendChild(card); document.body.appendChild(ov); card.querySelector('.chip').focus();
+}
+function closeCard(){
+  document.querySelector('.overlay')?.remove(); closePicker(); openId=null; renderCase();
+  setTimeout(()=>{books.forEach(b=>b.justMoved=false)},3300);
+}
+function openPicker(anchor,b){
+  closePicker();
+  const p=document.createElement('div'); p.className='picker'; p.setAttribute('role','listbox');
+  kans.forEach(k=>{
+    const o=document.createElement('button'); o.setAttribute('role','option');
+    o.innerHTML=`<span>${k.name}</span>${k.id===b.kan?'<span class="cur">지금 칸</span>':''}`;
+    o.onclick=()=>{ if(k.id!==b.kan) move(b,k.id); closePicker(); };
+    p.appendChild(o);
+  });
+  p.appendChild(document.createElement('hr'));
+  const nk=document.createElement('button'); nk.className='newk'; nk.textContent='+ 새 칸'; p.appendChild(nk);
+  nk.onclick=()=>{
+    nk.remove();
+    const f=document.createElement('form'); f.innerHTML='<input id="newkan" aria-label="새 칸 이름" placeholder="새 칸 이름"><button class="btn primary" style="all:unset;cursor:pointer;color:var(--accent);font-weight:600;padding:0 6px">만들기</button>';
+    const h=document.createElement('div'); h.className='hint'; h.textContent='만들면 사서가 이 칸에 들어오는 글 초안을 써줘요';
+    f.onsubmit=e=>{e.preventDefault();const v=f.querySelector('input').value.trim(); if(!v)return; const id='k'+Date.now(); kans.splice(kans.length-1,0,{id,name:v,hand:true}); move(b,id); closePicker();};
+    p.appendChild(f); p.appendChild(h); f.querySelector('input').focus();
+  };
+  document.body.appendChild(p);
+  const r=anchor.getBoundingClientRect();
+  p.style.left=Math.min(window.innerWidth-220,Math.max(8,r.left))+'px';
+  p.style.top=(r.bottom+6+window.scrollY)+'px'; p.style.position='absolute';
+  picker=p; setTimeout(()=>document.addEventListener('click',outside),0);
+  p.querySelector('button').focus();
+}
+function outside(e){ if(picker && !picker.contains(e.target)) closePicker(); }
+function closePicker(){ picker?.remove(); picker=null; document.removeEventListener('click',outside); }
+function move(b,to){
+  const from=b.kan; lastMove={id:b.id,from,to};
+  ghosts=ghosts.filter(g=>g.id!==b.id); ghosts.push({id:b.id,kan:from,title:b.t,to:kanName(to)});
+  b.kan=to; b.justMoved=true;
+  renderReport();
+  const slot=document.querySelector('.card .chipslot'); if(slot){slot.innerHTML='';slot.appendChild(chip(b));}
+  if(!openId) renderCase();
+  toast(`${kanName(to)} 칸으로 옮겼어요`);
+}
+function toast(msg){
+  document.querySelector('.toast')?.remove(); clearTimeout(toastTimer);
+  const t=document.createElement('div'); t.className='toast'; t.setAttribute('role','status');
+  t.innerHTML=`<span>${msg}</span><button>되돌리기</button>`;
+  t.querySelector('button').onclick=()=>{ if(!lastMove)return; const b=books.find(x=>x.id===lastMove.id); b.kan=lastMove.from; b.justMoved=false; ghosts=ghosts.filter(g=>g.id!==b.id); lastMove=null; renderReport(); const slot=document.querySelector('.card .chipslot'); if(slot){slot.innerHTML='';slot.appendChild(chip(b));} if(!openId)renderCase(); t.remove(); };
+  document.body.appendChild(t); toastTimer=setTimeout(()=>t.remove(),5000);
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(picker)closePicker(); else if(openId)closeCard(); }});
+renderCase(); renderReport();
+</script>
